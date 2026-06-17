@@ -2,148 +2,196 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vertical Grid Fitness Schedule</title>
+    <title>Male Fitness Schedule</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
+        /* Fixed Portrait Canvas Layout - Brightened background shell */
         body {
             font-family: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
-            background: radial-gradient(circle at top, #1e222b 0%, #0d0f13 100%);
+            background: linear-gradient(135deg, #101c33 0%, #0a1120 50%, #04070f 100%);
             color: #ffffff;
             width: 1440px;
             height: 2592px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            padding: 80px 50px;
-            position: relative;
+            padding: 90px 60px;
         }
-        /* Style accents matching your original image track theme */
+
+        /* Vibrancy Accent Background Rings */
         body::before {
             content: "";
             position: absolute;
-            bottom: -5%;
-            left: -5%;
-            width: 50%;
-            height: 25%;
-            background: linear-gradient(45deg, rgba(255, 76, 41, 0.1), transparent);
-            transform: rotate(-15deg);
-            z-index: 1;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
+
+        body::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 76, 41, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
         header {
             text-align: center;
-            margin-bottom: 2vh;
+            margin-bottom: 70px;
+            flex-shrink: 0;
         }
+
         h1 {
-            font-size: 4.5vw;
+            font-size: 90px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #ff4c29, #00ddff);
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, #ff4c29 0%, #ffea00 50%, #00ddff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
+
         .subtitle {
-            font-size: 1.8vw;
-            color: #a0aec0;
+            font-size: 36px;
+            color: #00ff88; /* Vibrant neon green for timing subhead */
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 0.5vh;
+            letter-spacing: 6px;
+            margin-top: 20px;
+            font-weight: 800;
         }
-        /* Grid Layout matching the original image style */
+
+        /* Rigid Structural Grid Matrix Configuration */
         .grid-table {
             flex: 1;
             display: grid;
-            grid-template-columns: 1fr 2.2fr 2.2fr 2.2fr;
-            gap: 0.8vw;
-            z-index: 2;
-            height: 85vh;
+            grid-template-columns: 180px 1fr 1fr 1fr;
+            grid-template-rows: 110px repeat(5, 1fr); /* Divides rows equally down screen heights */
+            gap: 25px;
+            min-height: 0;
         }
-        /* Column Headers */
+
+        /* High Visibility Column Header Blocks */
         .col-header {
-            background: rgba(255, 255, 255, 0.03);
-            border-bottom: 4px solid #ff4c29;
+            background: #162644;
+            border-bottom: 6px solid #ff4c29;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2vw;
-            font-weight: 800;
+            font-size: 36px;
+            font-weight: 900;
             text-transform: uppercase;
+            letter-spacing: 2px;
             text-align: center;
-            padding: 1vh 0.5vw;
-            border-radius: 6px 6px 0 0;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
+
         .col-header.location {
-            border-bottom: 4px solid #00ddff;
+            border-bottom: 6px solid #00ddff;
             color: #00ddff;
-            background: linear-gradient(180deg, rgba(0, 221, 255, 0.04) 0%, transparent 100%);
+            background: linear-gradient(180deg, #122c4b 0%, #162644 100%);
         }
-        /* Row Labels (Days) */
+
+        /* Weekday Row Header Cards */
         .day-label {
-            background: rgba(255, 76, 41, 0.08);
-            border-left: 5px solid #ff4c29;
-            font-weight: 800;
-            font-size: 2.4vw;
+            background: linear-gradient(135deg, #ff4c29 0%, #b32a10 100%);
+            font-weight: 900;
+            font-size: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-transform: uppercase;
-            border-radius: 4px;
+            border-radius: 16px;
             color: #ffffff;
+            box-shadow: 0 10px 20px rgba(255, 76, 41, 0.2);
+            letter-spacing: 1px;
         }
-        /* Schedule Cells */
+
+        /* High Visibility Brightened Schedule Cells */
         .class-cell {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 4px;
-            padding: 1vh 0.8vw;
+            background: rgba(26, 43, 77, 0.9); /* Opaque background stops display washout */
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 0.8vh;
+            gap: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-        /* Individual Class Items (Reduced for Vertical Fit) */
+
+        /* Individual Fitness Session Blocks */
         .class-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 0.5vh;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 6px solid #00ff88; /* Neon green marker for single sessions */
+            padding: 12px 18px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .class-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+
+        /* Shifts design layout if a single cell holds 3+ sessions to guarantee fit */
+        .class-cell div:nth-last-child(n+3),
+        .class-cell div:nth-last-child(n+3) ~ div {
+            padding: 8px 14px;
+            gap: 2px;
         }
+
         .class-name {
-            font-size: 1.4vw;
-            font-weight: 700;
+            font-size: 26px;
+            font-weight: 800;
             color: #ffffff;
             display: block;
             line-height: 1.2;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+
         .class-time {
-            color: #a0aec0;
-            font-size: 1.1vw;
-            font-weight: 600;
+            color: #ffea00; /* Ultra-bright yellow for timing clocks */
+            font-size: 20px;
+            font-weight: 700;
             display: block;
-            margin-top: 0.2vh;
+            margin-top: 5px;
+        }
+
+        /* Compress slightly for super heavy density cells to fit flawlessly */
+        .class-cell div:nth-last-child(n+3) .class-name {
+            font-size: 23px;
+        }
+        .class-cell div:nth-last-child(n+3) .class-time {
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Male Fitness Classes</h1>
-        <div class="subtitle">June – September, 2026</div>
+        <h1>Male Fitness Schedule</h1>
+        <div class="subtitle">June – September 2026</div>
     </header>
 
     <div class="grid-table">
         <div class="col-header">Days</div>
-        <div class="col-header location">Al Farhaah</div>
-        <div class="col-header location">Al Saadah</div>
-        <div class="col-header location">CrossFiit</div>
+        <div class="col-header location">Al Farhah</div>
+        <div class="col-header location">Al Sa'adah</div>
+        <div class="col-header location">CrossFit</div>
 
         <div class="day-label">Sun</div>
         <div class="class-cell">
