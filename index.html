@@ -12,7 +12,7 @@
             padding: 0;
         }
 
-        /* Fixed Portrait Canvas Layout - Brightened background shell */
+        /* Fixed Portrait Canvas Layout - Strict Dimensions Preserved */
         body {
             font-family: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #101c33 0%, #0a1120 50%, #04070f 100%);
@@ -22,7 +22,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            padding: 90px 60px;
+            padding: 70px 50px;
         }
 
         /* Vibrancy Accent Background Rings */
@@ -50,12 +50,12 @@
 
         header {
             text-align: center;
-            margin-bottom: 70px;
+            margin-bottom: 40px;
             flex-shrink: 0;
         }
 
         h1 {
-            font-size: 70px;
+            font-size: 82px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -67,20 +67,20 @@
 
         .subtitle {
             font-size: 32px;
-            color: #00ff88; /* Vibrant neon green for timing subhead */
+            color: #00ff88;
             text-transform: uppercase;
             letter-spacing: 6px;
-            margin-top: 20px;
+            margin-top: 12px;
             font-weight: 800;
         }
 
-        /* Rigid Structural Grid Matrix Configuration */
+        /* Rigid Structural Grid Matrix Configuration - Scaled to fit 2592px precisely */
         .grid-table {
             flex: 1;
             display: grid;
-            grid-template-columns: 180px 1fr 1fr 1fr;
-            grid-template-rows: 110px repeat(5, 1fr); /* Divides rows equally down screen heights */
-            gap: 25px;
+            grid-template-columns: 160px 1fr 1fr 1fr;
+            grid-template-rows: 90px repeat(5, minmax(0, 1fr));
+            gap: 18px;
             min-height: 0;
         }
 
@@ -91,12 +91,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-align: center;
-            padding: 10px;
+            padding: 8px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
@@ -111,7 +111,7 @@
         .day-label {
             background: linear-gradient(135deg, #ff4c29 0%, #b32a10 100%);
             font-weight: 900;
-            font-size: 42px;
+            font-size: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -124,66 +124,82 @@
 
         /* High Visibility Brightened Schedule Cells */
         .class-cell {
-            background: rgba(26, 43, 77, 0.9); /* Opaque background stops display washout */
+            background: rgba(26, 43, 77, 0.9);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
-            padding: 20px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            gap: 15px;
+            justify-content: space-evenly;
+            gap: 6px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
         }
 
         /* Individual Fitness Session Blocks */
         .class-item {
             background: rgba(255, 255, 255, 0.05);
-            border-left: 6px solid #00ff88; /* Neon green marker for single sessions */
-            padding: 12px 18px;
+            border-left: 5px solid #00ff88;
+            padding: 8px 12px;
             border-radius: 8px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-
-        /* Shifts design layout if a single cell holds 3+ sessions to guarantee fit */
-        .class-cell div:nth-last-child(n+3),
-        .class-cell div:nth-last-child(n+3) ~ div {
-            padding: 8px 14px;
-            gap: 2px;
+            min-height: 0;
         }
 
         .class-name {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 800;
             color: #ffffff;
             display: block;
-            line-height: 1.2;
+            line-height: 1.15;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .class-time {
-            color: #ffea00; /* Ultra-bright yellow for timing clocks */
-            font-size: 20px;
+            color: #ffea00;
+            font-size: 17px;
             font-weight: 700;
             display: block;
-            margin-top: 5px;
+            margin-top: 3px;
         }
 
-        /* Compress slightly for super heavy density cells to fit flawlessly */
-        .class-cell div:nth-last-child(n+3) .class-name {
-            font-size: 23px;
+        /* Dynamic scale down for cells containing 4 items */
+        .class-cell:has(> .class-item:nth-child(4)) .class-item {
+            padding: 6px 10px;
         }
-        .class-cell div:nth-last-child(n+3) .class-time {
-            font-size: 18px;
+        .class-cell:has(> .class-item:nth-child(4)) .class-name {
+            font-size: 19px;
+        }
+        .class-cell:has(> .class-item:nth-child(4)) .class-time {
+            font-size: 15px;
+            margin-top: 2px;
+        }
+
+        /* Dynamic scale down for high-density cells containing 5 items */
+        .class-cell:has(> .class-item:nth-child(5)) {
+            padding: 8px;
+            gap: 4px;
+        }
+        .class-cell:has(> .class-item:nth-child(5)) .class-item {
+            padding: 4px 8px;
+            border-left-width: 4px;
+        }
+        .class-cell:has(> .class-item:nth-child(5)) .class-name {
+            font-size: 17px;
+        }
+        .class-cell:has(> .class-item:nth-child(5)) .class-time {
+            font-size: 14px;
+            margin-top: 1px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Welness & Fitness Classes</h1>
+        <h1>Wellness & Fitness Classes</h1>
         <div class="subtitle">Male Only</div>
     </header>
 
